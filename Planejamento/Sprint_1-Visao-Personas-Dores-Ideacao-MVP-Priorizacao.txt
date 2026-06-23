@@ -1,0 +1,572 @@
+SPRINT 01 - 
+
+1. VISÃO DO PRODUTO
+
+Nome: WorkOS
+
+Descrição:
+
+Sistema web para gestão completa de Ordens de Serviço, contratos, técnicos, clientes e estoque, permitindo o acompanhamento operacional desde a abertura até o encerramento da execução.
+
+O objetivo é centralizar processos operacionais, reduzir retrabalho, garantir rastreabilidade das atividades e fornecer indicadores gerenciais para tomada de decisão.
+
+Obs: Pensando em uma evolução para o técnico que estaria na rua, seria disposto um aplicativo que teria todo um workflow ja desenhado do dia com a carga equilibrada para as OS a serem executadas no dia,
+também teria o acesso para consulta e comunicação direta com o sistema web, fazendo com que o web ficasse mais pra gerencia e observabilidade.(Não estará presente nesse MVP)
+
+Problema que resolve:
+
+Ordens de serviço controladas manualmente;
+Falta de rastreabilidade;
+Integrações inexistentes;
+Estoque descentralizado;
+Dificuldade para acompanhar produtividade dos técnicos;
+Inconsistência entre contratos e execuções;
+
+Público-Alvo:
+
+Provedores de Internet;
+Empresas de Telecom;
+Empresas de Instalação;
+Empresas de Manutenção;
+Prestadores de Serviços Técnicos;
+
+Obs: Defini publicos alvos que eu tive mais contato profundo com as regras de negócio, porém é uma ferramenta para diversos tipos de clientes e setores diferentes.
+
+2. PERSONAS
+
+Persona 1 — Técnico de Campo
+
+Objetivo: 
+Executar ordens de serviço;
+Consultar e acrescentar detalhes da ordem;
+Consultar e manipular estoque;
+
+Necessidades: 
+
+Ver OS atribuídas;
+Atualizar status;
+Registrar observações;
+Informar materiais utilizados;
+Requisitar materiais;
+
+Dor
+
+Perde tempo buscando informações;
+
+
+Persona 2 — Supervisor Operacional
+
+Objetivo:
+
+Controlar a equipe;
+Manusear e controlar as execuções e SLAs;
+
+
+Necessidades:
+
+Distribuir OS;
+Monitorar produtividade;
+Acompanhar SLAs;
+
+Dor:
+
+Não possui visão consolidada das operações.
+
+
+Persona 3 — Estoquista
+
+Objetivo:
+
+Controlar materiais;
+Visualizar a rastreabilidade de entrada e saída e uso dos estoques;
+
+Necessidades:
+
+Registrar entradas;
+Registrar saídas;
+Consultar saldo;
+
+Dor:
+
+Divergência de estoque.
+
+
+
+Persona 4 — Administrador
+
+Objetivo:
+
+Gerenciar o negócio.
+
+Necessidades:
+
+Indicadores;
+Relatórios;
+Controle contratual;
+
+Dor:
+
+Falta de dados para tomada de decisão.
+
+3. MAPA DE DORES
+
+Técnico:
+
+Não sabe quais OS são prioritárias;
+Informações espalhadas;
+Atualizações manuais;
+
+Supervisor:
+
+Falta de rastreabilidade;
+Dificuldade para medir desempenho;
+Controle manual;
+
+Estoquista:
+
+Materiais sem histórico;
+Falta de auditoria;
+
+Administrador:
+
+Pouca visibilidade operacional;
+Indicadores inconsistentes;
+
+4. IDEAÇÃO
+
+
+Solução 1
+
+Gestão de Ordens de Serviço
+
+Solução 2
+
+Distribuição de Técnicos
+
+Solução 3
+
+Controle de Estoque
+
+Solução 4
+
+Dashboard Operacional
+
+Solução 5
+
+Histórico de Alterações
+
+Solução 6
+
+Gestão de Contratos
+
+Solução 7
+
+Notificações
+
+(Fase futura)
+
+Solução 8
+
+Integrações
+
+(Fase futura)
+
+5. MVP
+
+Módulo Cliente MVP:
+Cadastro;
+Consulta;
+Edição;
+Inativação;
+
+Cadastro de endereco; (Fazer importação de endereços CIDADE ESTADO LOGRADOURO CEP);
+
+
+Módulo Contrato MVP:
+
+Cadastro;
+Associação ao cliente;
+Status;
+
+
+Módulo Técnico MVP:
+
+Cadastro;
+Especialidades;
+Status;
+Associação de estoques;
+
+Módulo Ordem de Serviço MVP:
+
+Abertura;
+Atribuição;
+Atualização;
+Encerramento;
+Criação de Lançamentos e Serviços para serem usados na OS;
+
+Módulo Estoque MVP:
+
+Cadastro de Armazens;
+Cadastro de produtos;
+Entrada;
+Saída;
+
+Dashboard MVP:
+
+OS abertas;
+OS encerradas;
+Técnicos ativos;
+Produtos mais utilizados;
+Serviços mais utilizados;
+
+Segurança MVP:
+
+Login;
+JWT;
+Perfis;
+
+
+6. PRIORIZAÇÃO
+
+Método MoSCoW.
+
+MUST HAVE
+
+Sem isso o sistema não existe.
+
+Clientes
+CRUD
+Técnicos
+CRUD
+Contratos
+CRUD
+Ordens de Serviço
+CRUD
+Produtos
+CRUD
+Movimentação de Estoque
+Login
+JWT
+Dashboard Básico
+PostgreSQL
+Docker
+
+
+SHOULD HAVE
+
+Entrega valor relevante.
+
+Auditoria;
+Histórico de Alterações;
+Upload de Arquivos;
+Dashboard Avançado;
+Logs;
+
+
+COULD HAVE
+
+Melhorias futuras.
+
+RabbitMQ;
+Redis;
+E-mails;
+Notificações;
+Relatórios PDF;
+Exportação Excel;
+
+WON'T HAVE (V1)
+
+Aplicativo Mobile;
+Multiempresa;
+Integrações fiscais;
+IA;
+
+
+1. VISÃO DO PRODUTO
+Nome
+
+Workflow OS
+
+Descrição:
+
+Sistema web para gestão completa de Ordens de Serviço, contratos, técnicos, clientes e estoque, permitindo o acompanhamento operacional desde a abertura até o encerramento da execução.
+
+O objetivo é centralizar processos operacionais, reduzir retrabalho, garantir rastreabilidade das atividades e fornecer indicadores gerenciais para tomada de decisão.
+
+Visão de Longo Prazo:
+
+O MVP será focado na gestão operacional através da plataforma web.
+
+Em versões futuras, o ecossistema será expandido com um aplicativo mobile para técnicos de campo, oferecendo:
+
+Roteirização diária;
+Balanceamento de carga de trabalho;
+Consulta de estoque;
+Comunicação operacional;
+Atualização em tempo real das execuções;
+Controle de deslocamentos e produtividade;
+
+A plataforma web permanecerá focada em gestão, observabilidade e tomada de decisão.
+
+Problema que Resolve:
+
+Ordens de serviço controladas manualmente;
+Falta de rastreabilidade;
+Integrações inexistentes;
+Estoque descentralizado;
+Dificuldade para acompanhar produtividade dos técnicos;
+Inconsistência entre contratos e execuções;
+
+Público-Alvo:
+
+Provedores de Internet;
+Empresas de Telecom;
+Empresas de Instalação;
+Empresas de Manutenção;
+Prestadores de Serviços Técnicos;
+
+Embora inspirado em experiências do segmento de telecomunicações, o sistema foi concebido para atender diferentes setores que dependem de operações externas e execução de serviços em campo.
+
+2. PERSONAS
+
+
+- Técnico de Campo
+
+Objetivo:
+
+Executar ordens de serviço;
+Consultar informações operacionais;
+Registrar atividades;
+Utilizar materiais vinculados à execução;
+
+Necessidades:
+
+Visualizar OS atribuídas:
+Atualizar status;
+Registrar observações;
+Informar materiais utilizados;
+Solicitar materiais;
+
+Dor:
+
+Perda de tempo buscando informações;
+Falta de centralização dos dados operacionais;
+
+- Supervisor Operacional
+
+Objetivo:
+
+Gerenciar equipes;
+Controlar execução operacional;
+Garantir cumprimento dos SLAs;
+
+Necessidades:
+
+Distribuir OS;
+Monitorar produtividade;
+Acompanhar indicadores operacionais;
+
+Dor:
+
+Falta de visão consolidada da operação;
+
+- Estoquista
+
+Objetivo:
+
+Controlar materiais e movimentações;
+
+Necessidades:
+
+Registrar entradas;
+Registrar saídas;
+Consultar saldos;
+Auditar movimentações;
+
+Dor:
+
+Divergência entre estoque físico e sistema;
+
+- Administrador
+
+Objetivo:
+
+Gerenciar a operação e apoiar decisões estratégicas;
+
+Necessidades:
+
+Indicadores;
+Relatórios;
+Controle contratual;
+
+Dor
+
+Falta de informações confiáveis para tomada de decisão;
+
+- Analista de Atendimento
+
+Objetivo:
+
+Registrar solicitações de clientes;
+Abrir e acompanhar ordens de serviço;
+
+Necessidades:
+
+Consultar clientes;
+Criar solicitações;
+Acompanhar execuções;
+
+Dor:
+
+Dependência de comunicação informal entre áreas;
+
+3. MAPA DE DORES
+Técnico:
+
+Não sabe quais OS são prioritárias;
+Informações espalhadas;
+Atualizações manuais;
+
+Supervisor:
+
+Falta de rastreabilidade;
+Dificuldade para medir desempenho;
+Controle manual;
+
+Estoquista
+
+Materiais sem histórico;
+Falta de auditoria;
+
+Administrador:
+
+Pouca visibilidade operacional;
+Indicadores inconsistentes;
+
+Atendimento:
+
+Falta de acompanhamento do ciclo completo das solicitações;
+Dependência de comunicação paralela para obter informações;
+
+
+4. IDEAÇÃO
+
+Solução 1
+
+Gestão de Ordens de Serviço;
+
+Solução 2
+
+Distribuição de Técnicos;
+
+Solução 3
+
+Controle de Estoque;
+
+Solução 4
+
+Dashboard Operacional;
+
+Solução 5
+
+Histórico de Alterações;
+
+Solução 6
+
+Gestão de Contratos;
+
+Solução 7
+
+Notificações (Fase futura);
+
+Solução 8
+
+Integrações (Fase futura);
+
+5. MVP
+
+Clientes;
+Cadastro;
+Consulta;
+Edição;
+Inativação;
+Cadastro de endereços;
+Integração de CEP;
+Contratos;
+Cadastro;
+Associação ao cliente;
+Vigência;
+Valor;
+Status;
+Técnicos;
+Cadastro;
+Especialidades;
+Status;
+Associação de estoques;
+Ordens de Serviço;
+Abertura;
+Atribuição;
+Atualização;
+Encerramento;
+Associação de serviços executados;
+Estoque;
+Cadastro de armazéns;
+Cadastro de produtos;
+Entrada;
+Saída;
+Transferência entre estoques;
+Dashboard;
+OS abertas;
+OS encerradas;
+Técnicos ativos;
+Produtos mais utilizados;
+Serviços mais utilizados;
+Indicadores de SLA;
+Segurança;
+Login;
+JWT;
+Perfis de acesso;
+Observabilidade;
+Logs estruturados;
+
+
+6. PRIORIZAÇÃO (MoSCoW)
+
+
+MUST HAVE
+
+CRUD Clientes;
+CRUD Técnicos;
+CRUD Contratos;
+CRUD Ordens de Serviço;
+CRUD Produtos;
+Movimentação de Estoque;
+Login;
+JWT;
+Dashboard Básico;
+PostgreSQL;
+Docker;
+Logs Estruturados;
+
+SHOULD HAVE
+
+Auditoria;
+Histórico de Alterações;
+Upload de Arquivos;
+Dashboard Avançado;
+
+COULD HAVE
+
+RabbitMQ;
+Redis;
+E-mails;
+Notificações;
+Relatórios PDF;
+Exportação Excel;
+
+WON'T HAVE (V1)
+
+Aplicativo Mobile;
+Multiempresa;
+Integrações Fiscais;
+Inteligência Artificial;
