@@ -23,7 +23,7 @@ namespace WorkflowOS.Infrastructure.Persistence.Migrations
                     SenhaHash = table.Column<string>(type: "text", nullable: false),
                     Ativo = table.Column<bool>(type: "boolean", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DataAlteracao = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {

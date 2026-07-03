@@ -1,58 +1,65 @@
-using Microsoft.EntityFrameworkCore;
-using WorkflowOS.Infrastructure.Persistence;
+using FluentValidation;
+using MediatR;
+using WorkflowOS.Api.Extensions;
+using WorkflowOS.Application;
+using WorkflowOS.Application.Behaviors;
+using WorkflowOS.Application.Common.Behaviors;
+using WorkflowOS.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Controllers
+builder.Services.AddControllers();
 
-builder.Services.AddDbContext<WorkflowOSDbContext>(options =>
-{
-    options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Infrastructure
+builder.Services.AddInfrastructure(builder.Configuration);
+
+// MediatR
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(WorkflowOS.Application.AssemblyReference).Assembly);
+});
+
+// FluentValidation
+builder.Services.AddValidatorsFromAssembly(typeof(WorkflowOS.Application.AssemblyReference).Assembly);
+
+
+
+builder.Services.AddTransient(
+    typeof(IPipelineBehavior<,>),
+    typeof(ValidationBehavior<,>));
+
+builder.Services.AddTransient(
+    typeof(IPipelineBehavior<,>),
+    typeof(LoggingBehavior<,>));
+
+builder.Services.AddValidatorsFromAssembly(
+    typeof(AssemblyReference).Assembly);
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(
+        typeof(AssemblyReference).Assembly);
+});
+
 var app = builder.Build();
 
-using var scope = app.Services.CreateScope();
-
-var context = scope.ServiceProvider.GetRequiredService<WorkflowOSDbContext>();
-
-await context.Database.CanConnectAsync();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseExceptionMiddleware();
+
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseAuthorization();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

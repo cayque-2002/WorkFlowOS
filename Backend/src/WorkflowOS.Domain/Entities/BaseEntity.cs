@@ -2,14 +2,14 @@ namespace WorkflowOS.Domain.Entities;
 
 public abstract class BaseEntity
 {
-    public long Id { get; set; }
+    public long Id { get; protected set; }
 
-    public DateTime DataCriacao { get; set; }
+    public DateTime DataCriacao { get; protected set; } = DateTime.UtcNow;
 
-    public DateTime? DataAlteracao { get; set; }
+    public DateTime? DataAtualizacao { get; protected set; }
 
-    protected BaseEntity()
+    protected void AtualizarDataModificacao()
     {
-        DataCriacao = DateTime.UtcNow;
+        DataAtualizacao = DateTime.UtcNow;
     }
 }

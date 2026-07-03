@@ -1,6 +1,5 @@
 ﻿namespace WorkflowOS.Application;
 
-public class Class1
+public sealed class AssemblyReference
 {
-
 }

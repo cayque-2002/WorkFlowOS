@@ -12,7 +12,7 @@ using WorkflowOS.Infrastructure.Persistence;
 namespace WorkflowOS.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(WorkflowOSDbContext))]
-    [Migration("20260623150533_InitialCreate")]
+    [Migration("20260703165335_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,7 +36,7 @@ namespace WorkflowOS.Infrastructure.Persistence.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("DataAlteracao")
+                    b.Property<DateTime?>("DataAtualizacao")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DataCriacao")

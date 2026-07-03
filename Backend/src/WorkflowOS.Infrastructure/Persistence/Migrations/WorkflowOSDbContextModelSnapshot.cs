@@ -33,7 +33,7 @@ namespace WorkflowOS.Infrastructure.Persistence.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("DataAlteracao")
+                    b.Property<DateTime?>("DataAtualizacao")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DataCriacao")
